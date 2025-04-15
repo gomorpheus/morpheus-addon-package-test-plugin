@@ -2,14 +2,15 @@ package com.morpheusdata.addon
 
 import com.morpheusdata.core.MorpheusContext
 import com.morpheusdata.core.Plugin
-import com.morpheusdata.core.providers.AddonPackageTypeProvider
+import com.morpheusdata.core.providers.ComputeTypePackageProvider
 import com.morpheusdata.model.ComputeServerGroup
+import com.morpheusdata.model.ComputeServerGroupPackage
+import com.morpheusdata.model.ComputeTypePackage
 import com.morpheusdata.model.Icon
 import com.morpheusdata.model.OptionType
-import com.morpheusdata.model.AddonPackage
 import com.morpheusdata.response.ServiceResponse
 
-class TestAddonPackageTypeProvider implements AddonPackageTypeProvider {
+class TestAddonPackageTypeProvider implements ComputeTypePackageProvider {
 
     protected MorpheusContext morpheusContext
     protected Plugin plugin
@@ -42,6 +43,31 @@ class TestAddonPackageTypeProvider implements AddonPackageTypeProvider {
         return "morpheus-addon-package-test-type"
     }
 
+    @Override
+    String getDescription() {
+        return "A quick test package that does nothing, just provides option types"
+    }
+
+    @Override
+    String getType() {
+        return "test"
+    }
+
+    @Override
+    String getPackageType() {
+        return "test"
+    }
+
+    @Override
+    String getProviderType() {
+        return ComputeTypePackage.ProviderType.MVM
+    }
+
+    @Override
+    String getPackageVersion() {
+        return "0.0.1"
+    }
+
     Icon getCircularIcon() {
         return new Icon(path:"morpheus_circular.svg", darkPath: "morpheus_circular.svg")
     }
@@ -61,21 +87,14 @@ class TestAddonPackageTypeProvider implements AddonPackageTypeProvider {
         ]
     }
 
-    Collection<AddonPackage> getPackages() {
-        return [
-            new AddonPackage(
-                version: "0.0.1",
-                name: "Simple Test",
-                code: "simple-test"
-            )
-        ]
+
+    ServiceResponse<ComputeServerGroupPackage> installPackage(ComputeServerGroup serverGroup, ComputeServerGroupPackage computeServerGroupPackage) {
+        println "\u001B[33mAC Log - TestAddonPackageTypeProvider:installPackage- called on ${serverGroup.name} to install ${computeServerGroupPackage.packageType.name}:${computeServerGroupPackage.packageType.packageVersion}\u001B[0m"
+        return ServiceResponse<ComputeServerGroupPackage>.success(computeServerGroupPackage)
     }
 
-    ServiceResponse<AddonPackage> createPackage(ComputeServerGroup serverGroup, AddonPackage addonPackage) {
-        return ServiceResponse<AddonPackage>.success(addonPackage)
-    }
-
-    ServiceResponse removePackage(ComputeServerGroup serverGroup, AddonPackage addonPackage){
+    ServiceResponse deletePackage(ComputeServerGroup serverGroup,ComputeServerGroupPackage computeServerGroupPackage){
+        println "\u001B[33mAC Log - TestAddonPackageTypeProvider:deletePackage- called on ${serverGroup.name} to delete ${computeServerGroupPackage.packageType.name}:${computeServerGroupPackage.packageType.packageVersion}\u001B[0m"
         return ServiceResponse.error("Not implemented")
     }
 
