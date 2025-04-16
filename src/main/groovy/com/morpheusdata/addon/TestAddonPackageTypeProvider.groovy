@@ -95,7 +95,7 @@ class TestAddonPackageTypeProvider implements ComputeTypePackageProvider {
 
     ServiceResponse deletePackage(ComputeServerGroup serverGroup,ComputeServerGroupPackage computeServerGroupPackage){
         println "\u001B[33mAC Log - TestAddonPackageTypeProvider:deletePackage- called on ${serverGroup.name} to delete ${computeServerGroupPackage.packageType.name}:${computeServerGroupPackage.packageType.packageVersion}\u001B[0m"
-        return ServiceResponse.error("Not implemented")
+        return ServiceResponse.success("implemented")
     }
 
 }
