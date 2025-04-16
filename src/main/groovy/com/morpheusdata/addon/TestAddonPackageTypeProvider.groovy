@@ -98,4 +98,10 @@ class TestAddonPackageTypeProvider implements ComputeTypePackageProvider {
         return ServiceResponse.error("Not implemented")
     }
 
+    @Override
+    ServiceResponse<ComputeServerGroupPackage> upgradePackage(ComputeServerGroup computeServerGroup, ComputeServerGroupPackage computeServerGroupPackage, String s) {
+        println "\u001B[33mAC Log - TestAddonPackageTypeProvider:upgradePackage- called on ${serverGroup.name} to upgrade ${computeServerGroupPackage.packageType.name}:${computeServerGroupPackage.packageType.packageVersion} to ${s}\u001B[0m"
+        return ServiceResponse.error("Not implemented")
+
+    }
 }
