@@ -88,8 +88,8 @@ class TestAddonPackageTypeProvider implements ComputeTypePackageProvider {
     }
 
 
-    ServiceResponse<ComputeServerGroupPackage> installPackage(ComputeServerGroup serverGroup, ComputeServerGroupPackage computeServerGroupPackage) {
-        println "\u001B[33mAC Log - TestAddonPackageTypeProvider:installPackage- called on ${serverGroup.name} to install ${computeServerGroupPackage.packageType.name}:${computeServerGroupPackage.packageType.packageVersion}\u001B[0m"
+    ServiceResponse<ComputeServerGroupPackage> installPackage(ComputeServerGroup serverGroup, ComputeServerGroupPackage computeServerGroupPackage, Map config) {
+        println "\u001B[33mAC Log - TestAddonPackageTypeProvider:installPackage- called on ${serverGroup.name} to install ${computeServerGroupPackage.packageType.name}:${computeServerGroupPackage.packageType.packageVersion} with config ${config}\u001B[0m"
         return ServiceResponse<ComputeServerGroupPackage>.success(computeServerGroupPackage)
     }
 
