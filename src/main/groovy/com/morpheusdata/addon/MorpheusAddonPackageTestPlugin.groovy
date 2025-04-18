@@ -29,7 +29,7 @@ class MorpheusAddonPackageTestPlugin extends Plugin {
         this.setName("Morpheus Addon Package Test Plugin")
 
         //for later testing
-        //this.registerProvider(new MorpheusAddonPackageTestPluginClusterTabProvider(this,this.morpheus))
+        this.registerProvider(new MorpheusAddonPackageTestClusterTabProvider(this,this.morpheus))
         this.registerProvider(new TestAddonPackageTypeProvider(this,this.morpheus))
 
     }

@@ -5,6 +5,7 @@ import com.morpheusdata.core.MorpheusContext
 import com.morpheusdata.core.Plugin
 import com.morpheusdata.model.Account
 import com.morpheusdata.model.ComputeServerGroup
+import com.morpheusdata.model.ComputeServerGroupPackage
 import com.morpheusdata.model.User
 import com.morpheusdata.views.HTMLResponse
 import com.morpheusdata.views.ViewModel
@@ -40,7 +41,9 @@ class MorpheusAddonPackageTestClusterTabProvider extends AbstractClusterTabProvi
 	 */
 	@Override
 	Boolean show(ComputeServerGroup cluster, User user, Account account) {
-		return true
+		//check for installed package
+		def packageMatch = cluster.packages.find {it.packageType.code == 'morpheus-addon-package-test-type'}
+        return packageMatch?.status == ComputeServerGroupPackage.Status.OK
 	}
 
 	/**
@@ -80,6 +83,6 @@ class MorpheusAddonPackageTestClusterTabProvider extends AbstractClusterTabProvi
 	 */
 	@Override
 	String getName() {
-		return 'Morpheus Addon Package Test Plugin'
+		return 'Test Tab'
 	}
 }
