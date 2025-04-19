@@ -12,6 +12,8 @@ import com.morpheusdata.response.ServiceResponse
 
 class TestAddonPackageTypeProvider implements ComputeTypePackageProvider {
 
+    public static final String PACKAGE_PROVIDER_CODE = 'morpheus-addon-package-test-type'
+
     protected MorpheusContext morpheusContext
     protected Plugin plugin
 
@@ -40,7 +42,7 @@ class TestAddonPackageTypeProvider implements ComputeTypePackageProvider {
     }
 
     String getCode() {
-        return "morpheus-addon-package-test-type"
+        return PACKAGE_PROVIDER_CODE
     }
 
     @Override

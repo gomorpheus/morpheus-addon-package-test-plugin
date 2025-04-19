@@ -42,7 +42,7 @@ class MorpheusAddonPackageTestClusterTabProvider extends AbstractClusterTabProvi
 	@Override
 	Boolean show(ComputeServerGroup cluster, User user, Account account) {
 		//check for installed package
-		def packageMatch = cluster.packages.find {it.packageType.code == 'morpheus-addon-package-test-type'}
+		def packageMatch = cluster.packages.find {it.packageType.code == TestAddonPackageTypeProvider.PACKAGE_PROVIDER_CODE}
         return packageMatch?.status == ComputeServerGroupPackage.Status.OK
 	}
 
