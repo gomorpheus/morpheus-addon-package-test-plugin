@@ -67,7 +67,7 @@ class TestAddonPackageTypeProvider implements ComputeTypePackageProvider {
 
     @Override
     String getPackageVersion() {
-        return "0.0.1"
+        return "0.0.4"
     }
 
     Icon getCircularIcon() {
@@ -101,9 +101,10 @@ class TestAddonPackageTypeProvider implements ComputeTypePackageProvider {
     }
 
     @Override
-    ServiceResponse<ComputeServerGroupPackage> upgradePackage(ComputeServerGroup serverGroup, ComputeServerGroupPackage computeServerGroupPackage, String s) {
-        println "\u001B[33mAC Log - TestAddonPackageTypeProvider:upgradePackage- called on ${serverGroup.name} to upgrade ${computeServerGroupPackage.packageType.name}:${computeServerGroupPackage.packageType.packageVersion} to ${s}\u001B[0m"
-        return ServiceResponse.error("Not implemented")
+    ServiceResponse<ComputeServerGroupPackage> upgradePackage(ComputeServerGroup serverGroup, ComputeServerGroupPackage computeServerGroupPackage, String newVersion) {
+        println "\u001B[33mAC Log - TestAddonPackageTypeProvider:upgradePackage- called on ${serverGroup.name} to upgrade ${computeServerGroupPackage.packageType.name}:${computeServerGroupPackage.packageType.packageVersion} to ${newVersion}\u001B[0m"
+        computeServerGroupPackage.packageVersion = newVersion
+        return ServiceResponse<ComputeServerGroupPackage>.success(computeServerGroupPackage)
 
     }
 }
